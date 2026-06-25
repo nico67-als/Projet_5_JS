@@ -17,7 +17,7 @@ const slides = [
 	}
 ]
 
-let index = 0 // On affiche la première slide en premier
+let index = 0 
 const image = document.querySelector(".banner-img");
 const text = document.querySelector("#banner p");
 const arrowLeft = document.querySelector(".arrow_left");
@@ -26,10 +26,7 @@ const dots = document.querySelectorAll (".dot");
 
 arrowRight.addEventListener("click", function() {	
 	dots[index].classList.remove("dot_selected");
-	index = index + 1;
-	if (index > 3) {
-		index = 0;
-	}	
+	index = (index + 1)%slides.length;		
 	image.src = slides[index].image;
 	text.innerHTML = slides[index].tagLine;		
 	dots[index].classList.add("dot_selected");
@@ -37,10 +34,7 @@ arrowRight.addEventListener("click", function() {
 
 arrowLeft.addEventListener("click", function() {
 	dots[index].classList.remove("dot_selected");
-	index = index - 1;
-	if (index < 0) {
-		index = 3;
-	}
+	index = (index - 1 + slides.length)%slides.length;		
 	image.src = slides[index].image;
 	text.innerHTML = slides[index].tagLine;
 	dots[index].classList.add("dot_selected");
